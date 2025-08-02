@@ -5,7 +5,7 @@ import { Header } from './Header';
 
 export const Layout = () => {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900"> {/* <-- Add dark background here */}
       <SideNav />
       <div className="flex flex-col flex-1">
         <Header />

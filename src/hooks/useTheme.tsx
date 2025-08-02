@@ -3,28 +3,27 @@ import { useEffect, useState } from 'react';
 type Theme = 'dark' | 'light' | 'system';
 
 export const useTheme = () => {
-  // Get theme from localStorage or default to 'system'
   const [theme, setTheme] = useState<Theme>(
-    (localStorage.getItem('theme') as Theme) || 'system'
+    () => (localStorage.getItem('theme') as Theme) || 'system'
   );
 
   useEffect(() => {
-    const root = window.document.documentElement;
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-      .matches
-      ? 'dark'
-      : 'light';
+    const root = document.documentElement;
+    let effectiveTheme = theme;
 
-    root.classList.remove('light', 'dark');
-
+    // If theme is 'system', determine the actual theme from the OS
     if (theme === 'system') {
-      root.classList.add(systemTheme);
-    } else {
-      root.classList.add(theme);
+      effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        .matches ? 'dark' : 'light';
     }
 
+    // Apply the effective theme to the <html> element
+    root.classList.remove('dark', 'light');
+    root.classList.add(effectiveTheme);
+
+    // Save the user's preference (not the effective theme)
     localStorage.setItem('theme', theme);
-  }, [theme]);
+  }, [theme]); // Rerun this effect whenever the user's preference changes
 
   return { theme, setTheme };
 };
