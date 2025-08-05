@@ -1,23 +1,18 @@
 import React from 'react';
 import { useTheme } from '../../hooks/useTheme';
+import { Moon, Sun } from 'lucide-react';
 
 export const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme();
-
-  // Type assertion is safe here as option values match the Theme type
-  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(e.target.value as 'light' | 'dark' | 'system');
-  };
+  // The hook now returns the 'effectiveTheme' as 'theme' and a 'toggleTheme' function
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <select
-      value={theme}
-      onChange={handleThemeChange}
-      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none dark:bg-gray-700 dark:text-white dark:border-gray-600"
+    <button 
+      onClick={toggleTheme}
+      className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+      aria-label="Toggle theme"
     >
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-      <option value="system">System</option>
-    </select>
+      {theme === 'light' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+    </button>
   );
 };

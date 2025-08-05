@@ -14,7 +14,7 @@ type SideNavProps = {
 export const SideNav = ({ isCollapsed, onToggle }: SideNavProps) => {
   return (
     <aside 
-      className={`h-screen p-4 flex flex-col border-r border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}
+      className={`h-screen p-4 flex flex-col border-r border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 transition-all duration-200 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}
     >
       {/* Navigation Links Area now starts at the top */}
       <nav className="flex-grow pt-4">

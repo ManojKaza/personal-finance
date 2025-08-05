@@ -23,10 +23,6 @@ export const Header = () => {
 
         {/* Right side of Header: Actions */}
         <div className="flex items-center gap-4">
-          <Button>
-            <Plus className="w-4 h-4 mr-2" />
-            Add Transaction
-          </Button>
           <ThemeSwitcher />
         </div>
       </div>
