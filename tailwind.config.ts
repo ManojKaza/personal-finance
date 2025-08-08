@@ -1,32 +1,18 @@
 import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 export default {
-  darkMode: 'class',
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        // Define our color palette
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        card: 'hsl(var(--card))',
-        border: 'hsl(var(--border))',
-      },
-      fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      },
+        fontFamily:{
+            sans:['Inter', ...defaultTheme.fontFamily.sans]
+        }
     },
   },
-  plugins: [],
+plugins: [tailwindcssAnimate],
 } satisfies Config

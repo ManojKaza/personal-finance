@@ -1,28 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+@import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@import 'tailwindcss';
 
-@layer base {
-  :root {
-    --background: 0 0% 100%; /* White */
-    --foreground: 222.2 84% 4.9%; /* Dark Slate */
-    --card: 0 0% 100%; /* White */
-    --primary: 221.2 83.2% 53.3%; /* Indigo */
-    --primary-foreground: 210 40% 98%; /* Light Indigo Text */
-    --muted: 210 40% 96.1%; /* Light Slate */
-    --muted-foreground: 215.4 16.3% 46.9%; /* Muted Text */
-    --border: 214.3 31.8% 91.4%; /* Slate Border */
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%; /* Dark Slate */
-    --foreground: 210 40% 98%; /* Light Slate Text */
-    --card: 222.2 84% 4.9%; /* Dark Slate */
-    --primary: 217.2 91.2% 59.8%; /* Brighter Indigo */
-    --primary-foreground: 222.2 47.4% 11.2%; /* Dark Indigo Text */
-    --muted: 217.2 32.6% 17.5%; /* Darker Slate */
-    --muted-foreground: 215 20.2% 65.1%; /* Muted Text */
-    --border: 217.2 32.6% 17.5%; /* Darker Slate Border */
+@layer base{
+  * {
+    @apply transition-colors duration-200;
   }
 }
