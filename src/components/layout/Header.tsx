@@ -1,21 +1,21 @@
 import React from 'react';
-import { Button } from '../ui/Button';
 import { ThemeSwitcher } from '../ui/ThemeSwitcher';
-import { Plus, Landmark } from 'lucide-react';
+import { Landmark } from 'lucide-react';
 
+// No props are needed anymore
 export const Header = () => {
   return (
-    <header className="p-4 border-b border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800">
+    <header className="p-4 border-b bg-card border-border">
       <div className="flex items-center justify-between">
-        {/* Left side of Header: Logo and Page Title */}
-        <div className="flex items-center">
-          <Landmark className="w-8 h-8 text-indigo-600" />
-          <span className="text-xl font-bold ml-2 text-slate-800 dark:text-slate-200">
+        {/* Left side: Logo & App Name */}
+        <div className="flex items-center gap-4">
+          <Landmark className="w-8 h-8 text-primary" />
+          <span className="text-xl font-bold text-foreground">
             FinanceApp
           </span>
         </div>
 
-        {/* Right side of Header: Actions */}
+        {/* Right side: Actions */}
         <div className="flex items-center gap-4">
           <ThemeSwitcher />
         </div>

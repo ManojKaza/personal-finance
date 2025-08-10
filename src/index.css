@@ -1,9 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-@import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+@import 'tailwindcss';
 
-@layer base{
+@theme {
+  /* --- New Blue & Purple Light Theme --- */
+  --font-family-sans: "Inter", sans-serif;
+
+  --color-border: hsl(215 20% 90%);
+  --color-background: hsl(210 40% 98%);
+  --color-foreground: hsl(222 47% 11%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+  --color-primary: hsl(221 83% 53%);   /* Blue */
+  --color-primary-foreground: hsl(210 40% 98%);
+  --color-secondary: hsl(262 82% 58%); /* Purple */
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-muted: hsl(210 40% 96%);
+  --color-muted-foreground: hsl(215 16% 47%);
+}
+
+/* --- New Blue & Purple Dark Theme --- */
+.dark {
+  --color-border: hsl(217 33% 17%);
+  --color-background: hsl(222 47% 4%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-card: hsl(222 47% 11%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(217 91% 60%);   /* Blue */
+  --color-primary-foreground: hsl(222 47% 11%);
+  --color-secondary: hsl(263 70% 64%); /* Purple */
+  --color-secondary-foreground: hsl(210 40% 98%);
+  --color-muted: hsl(217 33% 17%);
+  --color-muted-foreground: hsl(215 20% 65%);
+}
+
+
+
+/* --- 3. Define Dark Mode Overrides and Global Styles --- */
+@layer base {
+  /* This applies a smooth transition to all color changes */
   * {
     @apply transition-colors duration-200;
   }
