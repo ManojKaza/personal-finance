@@ -1,6 +1,7 @@
 import React from 'react';
-import { LayoutDashboard, PlusCircle, List, User, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, List, BarChart2, PiggyBank, Target } from 'lucide-react';
 import { Tooltip } from '../ui/Tooltip';
+import { NavLink, useLocation } from 'react-router-dom';
 
 type SideNavProps = {
   isCollapsed: boolean;
@@ -8,18 +9,16 @@ type SideNavProps = {
 };
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard' },
-  { icon: PlusCircle, label: 'Add Transaction' },
-  { icon: List, label: 'Transactions' },
-];
-
-const bottomItems = [
-  { icon: User, label: 'Profile' },
-  { icon: Settings, label: 'Settings' },
-  { icon: LogOut, label: 'Log Out', danger: true },
+  { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
+  { icon: List, label: 'Transactions', path: '/transactions' },
+  { icon: BarChart2, label: 'Reports', path: '/reports' },
+  { icon: PiggyBank, label: 'Budgets', path: '/budgets' },
+  { icon: Target, label: 'Goals', path: '/goals' },
 ];
 
 export const SideNav = ({ isCollapsed }: SideNavProps) => {
+  const location = useLocation();
+
   return (
     <aside
       className={`transition-all duration-200 ease-in-out p-4 flex flex-col border-r bg-card border-border ${
@@ -28,43 +27,37 @@ export const SideNav = ({ isCollapsed }: SideNavProps) => {
     >
       <nav className="flex-1 overflow-y-auto">
         <ul>
-          {navItems.map(({ icon: Icon, label }) => (
-            <li key={label} className="mb-4">
-              <Tooltip content={label}>
-                <a
-                  href="#"
-                  className="flex items-center p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
-                >
-                  <Icon className="w-6 h-6 flex-shrink-0" />
-                  {!isCollapsed && <span className="ml-3 whitespace-nowrap">{label}</span>}
-                </a>
-              </Tooltip>
-            </li>
-          ))}
+          {navItems.map(({ icon: Icon, label, path }) => {
+            const isActive = location.pathname === path || location.pathname.startsWith(path + '/');;
+
+            return (
+              <li key={label} className="mb-4">
+                <Tooltip content={label}>
+                  <NavLink
+                    to={path}
+                    className={`flex items-center p-4 rounded-lg transition-colors ${
+                      isActive
+                        ? 'bg-muted text-foreground'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    }`}
+                  >
+                    <Icon
+                      className={`w-6 h-6 flex-shrink-0 ${
+                        isActive ? 'text-primary' : ''
+                      }`}
+                    />
+                    {!isCollapsed && (
+                      <span className={`ml-3 whitespace-nowrap ${
+                        isActive ? 'text-primary' : ''
+                      }`}>{label}</span>
+                    )}
+                  </NavLink>
+                </Tooltip>
+              </li>
+            );
+          })}
         </ul>
       </nav>
-
-      <div className="flex-shrink-0">
-        <ul>
-          {bottomItems.map(({ icon: Icon, label, danger }) => (
-            <li key={label} className={label === 'Log Out' ? 'border-t border-border pt-4' : 'mb-4'}>
-              <Tooltip content={label}>
-                <a
-                  href="#"
-                  className={`flex items-center p-2 rounded-lg ${
-                    danger
-                      ? 'text-red-500 hover:text-red-600'
-                      : 'text-muted-foreground hover:text-foreground'
-                  } hover:bg-muted`}
-                >
-                  <Icon className="w-6 h-6 flex-shrink-0" />
-                  {!isCollapsed && <span className="ml-3 whitespace-nowrap">{label}</span>}
-                </a>
-              </Tooltip>
-            </li>
-          ))}
-        </ul>
-      </div>
     </aside>
   );
 };

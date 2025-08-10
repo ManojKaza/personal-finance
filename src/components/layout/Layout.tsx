@@ -26,7 +26,7 @@ export const Layout = () => {
       <Header />
 
       <div className="flex flex-1 overflow-y-auto">
-        <SideNav isCollapsed={isSidebarCollapsed} onToggle={toggleSidebar} />
+        <SideNav isCollapsed={isSidebarCollapsed} />
 
         {/* Sidebar Toggle Button */}
         <button
